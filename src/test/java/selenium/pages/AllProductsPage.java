@@ -15,6 +15,10 @@ public class AllProductsPage {
     @FindBy(how = How.XPATH, using = "//a[@href=\"/view_cart\"]")
     WebElement viewCartButton;
 
+    public WebElement getContinueShoppingButton() {
+        return continueShoppingButton;
+    }
+
     @FindBy(how = How.CLASS_NAME, using = "btn-success")
     WebElement continueShoppingButton;
 

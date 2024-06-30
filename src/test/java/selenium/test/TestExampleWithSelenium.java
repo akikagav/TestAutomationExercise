@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.pages.AllProductsPage;
 import selenium.pages.CartPage;
 import selenium.pages.HomePage;
@@ -57,13 +59,13 @@ public class TestExampleWithSelenium {
         // Add first product to cart
         allProductsPage.hoverToProduct(1);
         allProductsPage.clickToAddToCartButton(1);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(allProductsPage.getContinueShoppingButton()));
         allProductsPage.clickOnContinueShoppingButton();
 
         // Add second product to cart
         allProductsPage.hoverToProduct(2);
         allProductsPage.clickToAddToCartButton(2);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Navigate to cart page and perform assertions
         CartPage cartPage = allProductsPage.clickOnViewCartButton();
